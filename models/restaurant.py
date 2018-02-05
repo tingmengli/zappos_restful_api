@@ -13,11 +13,11 @@ class RestaurantModel(db.Model):
 		self.name = name
 
 	def json(self):
-		return {'name': self.name, 'menus': [item.json() for item in self.items.all()]}
+		return {'restaurant id': self.id, 'name': self.name, 'menus': [menu.json() for menu in self.menus.all()]}
 
 	@classmethod
-	def find_by_name(cls, name):
-		return cls.query.filter_by(name=name).first() # SELECT * FROM items WHERE name=name LIMIT 1
+	def find_by_id(cls, _id):
+		return cls.query.filter_by(id=_id).first() # SELECT * FROM items WHERE name=name LIMIT 1
 
 	def save_to_db(self):
 		db.session.add(self)
