@@ -1,0 +1,519 @@
+{
+	"info": {
+		"name": "zappos_oa",
+		"_postman_id": "cc5aaa24-af2e-9bf4-8780-4ce4bcc971a5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Zappos oa",
+			"description": "",
+			"item": [
+				{
+					"name": "/restaurants",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "29fceb77-0b18-44eb-a31c-9c94940cc964",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/restaurants",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						},
+						"description": "This should return a list of stores, each in JSON format"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<itemid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{jwt_token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/item/<itemid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"item",
+								"<itemid>"
+							]
+						},
+						"description": "This should return one specific item, uniquely identified by its name. No two items may have the same name."
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurant/<restaurantid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{jwt_token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/restaurant/<restaurantid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"restaurant",
+								"<restaurantid>"
+							]
+						},
+						"description": "This should return one specific item, uniquely identified by its name. No two items may have the same name."
+					},
+					"response": []
+				},
+				{
+					"name": "/menu/<menuid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{jwt_token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/menu/<menuid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menu",
+								"<menuid>"
+							]
+						},
+						"description": "This should return one specific store, uniquely identified by its name. No two stores may have the same name."
+					},
+					"response": []
+				},
+				{
+					"name": "/menu/new",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Lunch\",\n\t\"restaurant_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/menu/new",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menu",
+								"new"
+							]
+						},
+						"description": "This will create a new store"
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurant/new",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Best Western\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/restaurant/new",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"restaurant",
+								"new"
+							]
+						},
+						"description": "This will create a new store"
+					},
+					"response": []
+				},
+				{
+					"name": "/item/new",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3609d019-77d9-42a5-a1ed-7eea16643e4b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"rice\",\n\t\"price\": 15.99,\n\t\"menu_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/item/new",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"item",
+								"new"
+							]
+						},
+						"description": "It will create a new item. If the item already exists, it will fail."
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<itemid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"price\": 20.99,\n\t\"name\": \"noodle\",\n\t\"menu_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/item/<itemid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"item",
+								"<itemid>"
+							]
+						},
+						"description": "It will create a new item or update an existing item. "
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurant/<restaurantid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Panda Express\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/restaurant/<restaurantid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"restaurant",
+								"<restaurantid>"
+							]
+						},
+						"description": "It will create a new item or update an existing item. "
+					},
+					"response": []
+				},
+				{
+					"name": "/menu/<menuid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Dinner\",\n\t\"restaurant_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/menu/<menuid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menu",
+								"<menuid>"
+							]
+						},
+						"description": "It will create a new item or update an existing item. "
+					},
+					"response": []
+				},
+				{
+					"name": "/item/<itemid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/item/<itemid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"item",
+								"<itemid>"
+							]
+						},
+						"description": "Delete an item, uniquely identified by its name."
+					},
+					"response": []
+				},
+				{
+					"name": "/restaurant/<restaurantid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/restaurant/<restaurantid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"restaurant",
+								"<restaurantid>"
+							]
+						},
+						"description": "Delete an item, uniquely identified by its name."
+					},
+					"response": []
+				},
+				{
+					"name": "/menu/<menuid>",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/menu/<menuid>",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menu",
+								"<menuid>"
+							]
+						},
+						"description": "Delete a store, uniquely identified by its name."
+					},
+					"response": []
+				},
+				{
+					"name": "/auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1973d158-7541-44db-8925-94c79a8f67a7",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Access token was not empty\"] = jsonData.access_token !== undefined;",
+									"",
+									"pm.environment.set(\"jwt_token\", jsonData.access_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tingmeng\",\n\t\"password\": \"qwer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "Authorization user"
+					},
+					"response": []
+				},
+				{
+					"name": "/register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"tingmeng\",\n\t\"password\": \"qwer\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Register user"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "61334601-7f67-400d-a7e9-185f36b74852",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a4ecf8a-7cc3-44d3-950c-e52f570c6996",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
